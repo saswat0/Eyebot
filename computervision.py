@@ -5,7 +5,6 @@ import cv2
 # need OpenCV version 3.4.7.28
 ##### press Esc key when running to kill program #####
 
-# cap = cv2.VideoCapture(r'C:\Users\jason\OneDrive - The University of Nottingham\4th Year\Image Processing Files\Mini Project\thresholdtest.mp4')
 cap = cv2.VideoCapture(1) # number here chooses which webcam to use (for just one webcam change to 0)
 cap.set(3, 1920)
 cap.set(4, 1080)

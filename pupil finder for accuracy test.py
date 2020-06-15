@@ -74,25 +74,25 @@ def threshold(img, thresh, blur):
     return imgthreshold, imgcontours, img_gray
 
 
-#def threshold(img, thresh, blur):
-#    '''Function to threshold eye image using opening and bluring
-#    This version has the thresh value be the value of the nth darkest value'''
-#    img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-#    if blur:
-#        img_gray = cv2.GaussianBlur(img_gray, (7, 7), 0)  #blur before thresholding to remove noise
-#    # offset values so they start at 0 this way only relative brightness matters
-#    img_gray = img_gray - np.amin(img_gray)  # redundant
-#    if thresh >= len(img_gray.flatten()):
-#        thresh = len(img_gray.flatten())/2 # top stop crash when thresh is greater than num of pixels
-#    localthresh = nthsmallest(img_gray, thresh)
-#    _, imgthreshold = cv2.threshold(img_gray, localthresh, 255, cv2.THRESH_BINARY_INV)
-#    #imgthresholdold = 1*imgthreshold # duplicate the one before opening for comparison
-#    #open_kernel = np.ones((2,2))
-#    #imgthreshold = cv2.morphologyEx(imgthreshold, cv2.MORPH_OPEN, open_kernel)
-#    #imgthreshold = cv2.medianBlur(imgthreshold, 5)
-#    _, imgcontours, _ = cv2.findContours(imgthreshold, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-#    imgcontours = sorted(imgcontours, key=lambda x: cv2.contourArea(x), reverse=True)
-#    return imgthreshold, imgcontours, img_gray
+def threshold(img, thresh, blur):
+   '''Function to threshold eye image using opening and bluring
+   This version has the thresh value be the value of the nth darkest value'''
+   img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+   if blur:
+       img_gray = cv2.GaussianBlur(img_gray, (7, 7), 0)  #blur before thresholding to remove noise
+   # offset values so they start at 0 this way only relative brightness matters
+   img_gray = img_gray - np.amin(img_gray)  # redundant
+   if thresh >= len(img_gray.flatten()):
+       thresh = len(img_gray.flatten())/2 # top stop crash when thresh is greater than num of pixels
+   localthresh = nthsmallest(img_gray, thresh)
+   _, imgthreshold = cv2.threshold(img_gray, localthresh, 255, cv2.THRESH_BINARY_INV)
+   imgthresholdold = 1*imgthreshold # duplicate the one before opening for comparison
+   open_kernel = np.ones((2,2))
+   imgthreshold = cv2.morphologyEx(imgthreshold, cv2.MORPH_OPEN, open_kernel)
+   imgthreshold = cv2.medianBlur(imgthreshold, 5)
+   _, imgcontours, _ = cv2.findContours(imgthreshold, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+   imgcontours = sorted(imgcontours, key=lambda x: cv2.contourArea(x), reverse=True)
+   return imgthreshold, imgcontours, img_gray
 
 def findcentroid(img):
     'For a thresholded img, this ouputs centroid of non zero values'
@@ -226,8 +226,8 @@ image = plt.imread(r'C:\Users\jason\OneDrive - The University of Nottingham\4th 
 #image = plt.imread('E:/Main Folders/Documents/Work/Fourth Year/Imaging/Eye tracking project/images/Looking towards nose/30N.png')
 image = np.flip(image,axis=2) # convert to cv2's BGR
 #image = np.flip(image,axis=0)
-#image = cv2.resize(image,(480,640))
-#image = leye_original3
+image = cv2.resize(image,(480,640))
+image = leye_original3
 
 frame_scale = int(frame_big_size[0]/image.shape[1]) # factor to scale up image
 frame_big_size = (image.shape[1]*frame_scale,image.shape[0]*frame_scale)
@@ -250,10 +250,10 @@ while True:
     ellipse = np.zeros(5) #defined incase no ellipses, eyes, etc. found
     ellipse[:] = np.nan
 
-    #leye = np.ones((frame.shape[0],frame.shape[1],frame.shape[2]))*255  # so that leye can be defined if no eyes are found
-    #reye = np.ones((frame.shape[0],frame.shape[1],frame.shape[2]))*255
-    #lellipse = ((np.nan,np.nan),(np.nan,np.nan),np.nan) #so nan ellipse can fill
-    #rellipse = ((np.nan,np.nan),(np.nan,np.nan),np.nan) #array when no ellipse drawn
+    leye = np.ones((frame.shape[0],frame.shape[1],frame.shape[2]))*255  # so that leye can be defined if no eyes are found
+    reye = np.ones((frame.shape[0],frame.shape[1],frame.shape[2]))*255
+    lellipse = ((np.nan,np.nan),(np.nan,np.nan),np.nan) #so nan ellipse can fill
+    rellipse = ((np.nan,np.nan),(np.nan,np.nan),np.nan) #array when no ellipse drawn
 
 
 
