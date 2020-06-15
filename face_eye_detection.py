@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Tue Oct 29 14:55:45 2019
-
-@author: ppyhb1
-"""
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -12,9 +7,9 @@ import cv2
 # multiple cascades: https://github.com/Itseez/opencv/tree/master/data/haarcascades
 
 #https://github.com/Itseez/opencv/blob/master/data/haarcascades/haarcascade_frontalface_default.xml
-face_cascade = cv2.CascadeClassifier(r'C:\Users\jason\OneDrive - The University of Nottingham\4th Year\Image Processing Files\Mini Project\haarcascade_frontalface_default.xml')
+face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 #https://github.com/Itseez/opencv/blob/master/data/haarcascades/haarcascade_eye.xml
-eye_cascade = cv2.CascadeClassifier(r'C:\Users\jason\OneDrive - The University of Nottingham\4th Year\Image Processing Files\Mini Project\haarcascade_eye.xml')
+eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
 
 cap = cv2.VideoCapture(1)
 

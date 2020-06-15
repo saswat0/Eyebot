@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue Nov  5 17:51:57 2019
-
-@author: hughd
-
 press 'r' to toggle rectangle
 press 'c' to toggle contours and centroid pixel
 press 'e' to toggle ellipse
