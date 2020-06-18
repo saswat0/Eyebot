@@ -6,6 +6,3 @@ Controlling wheelchair by tracking eye movements
 ```
 python computervision.py
 ```
-
-### TODO
-Add associated arduino codes
